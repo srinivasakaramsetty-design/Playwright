@@ -1,21 +1,13 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
 
-  fullyParallel: true,
-
   use: {
+    ...devices['Desktop Chrome'],
     headless: false,
     launchOptions: {
-    slowMo: 1000
-  },
-    trace: 'on-first-retry',
-  },
-
-  projects: [
-  { name: 'chromium', use: { browserName: 'chromium' } }
-  
-
-]
+      args: ['--start-maximized']
+    }
+  }
 });
